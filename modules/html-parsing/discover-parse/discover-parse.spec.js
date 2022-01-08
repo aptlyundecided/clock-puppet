@@ -1,6 +1,7 @@
 const fs = require('fs');
 const expect = require('chai').expect;
 const DiscoverParseHashtags = require('./index');
+const UpdateJSON = require('../../data-management').Discover.UpdateDiscoverHashtags;
 
 // Create function to read from test html file.
 const readTestFile = () => {
@@ -30,6 +31,10 @@ describe('Discover Parse', () => {
           })
           .then((hashtagDatalist) => {
               expect(hashtagDatalist.length).to.equal(20);
+              return UpdateJSON(hashtagDatalist);
+          })
+          .then(() => {
+              console.log('whelp!')
           })
           .catch((e) => {
               console.log(e);
